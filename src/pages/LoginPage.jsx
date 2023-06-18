@@ -28,6 +28,7 @@ function LoginPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
+      credentials: "include",
     })
       .then(res => {
         if (res.ok) {
