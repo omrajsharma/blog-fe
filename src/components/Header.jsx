@@ -16,6 +16,11 @@ function Header() {
     })
   }, [])
 
+  const logout = () => {
+    fetch('http://localhost:3000/api/v1/auth/logout', {
+      credentials: 'include'
+    })
+  }
 
   return (
     <header>
@@ -25,7 +30,7 @@ function Header() {
             <>
             <Link to='/create'>Create Blog</Link>
             <Link to='/profile'>Profile</Link>
-            <Link to='/logout'>Logout</Link>
+            <Link onClick={logout}>Logout</Link>
             </>
           )}
           { !user && (
