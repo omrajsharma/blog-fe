@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../context/UserContext';
 
 function Header() {
-  const [user, setUser] = React.useState(null);
+  const {userInfo, setUserInfo} = React.useContext(UserContext);
 
   React.useEffect(() => {
     fetch('http://localhost:3000/api/v1/auth/profile', {
@@ -10,9 +11,7 @@ function Header() {
     })
     .then(res => res.json())
     .then(data => {
-      if (data.username) {
-        setUser(data.username)
-      }
+      setUserInfo(data)
     })
   }, [])
 
@@ -20,20 +19,21 @@ function Header() {
     fetch('http://localhost:3000/api/v1/auth/logout', {
       credentials: 'include'
     })
+    setUserInfo({})
   }
 
   return (
     <header>
         <Link to='/' className='logo'>Our Tech Blogs</Link>
         <nav>
-          { user && (
+          { userInfo?.username && (
             <>
             <Link to='/create'>Create Blog</Link>
             <Link to='/profile'>Profile</Link>
             <Link onClick={logout}>Logout</Link>
             </>
           )}
-          { !user && (
+          { !userInfo?.username && (
             <>
               <Link to='/'>Home</Link>
               <Link to='/login'>Login</Link>

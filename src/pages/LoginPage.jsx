@@ -1,7 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 function LoginPage() {
+  const {setUserInfo} = React.useContext(UserContext);
+
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -32,6 +35,7 @@ function LoginPage() {
     })
       .then(res => {
         if (res.ok) {
+          res.json().then(data => setUserInfo(data))
           setLoggedIn(true);
         } else {
           alert("Invalid username or password");
