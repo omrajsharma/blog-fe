@@ -1,27 +1,24 @@
 import React from "react";
 
-function Post() {
+function Post({title, summary, author, updatedAt, cover}) {
   return (
     <div className="post">
       <div className="post__image">
         <img
-          src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*AQTVYeKTphXBndj11fOdrw.png"
+          src={"http://localhost:3000/" + cover}
           alt=""
         />
       </div>
       <div className="post__content">
-        <h2>The most failed JavaScript interview questions</h2>
+        <h2>{title}</h2>
         <div className="post__info">
           <a href="" className="post__author">
-            Omraj Sharma
+            {author}
           </a>
-          <time> 4 June 2023 12:30PM </time>
+          <time> {updatedAt} </time>
         </div>
         <div className="post__summary">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-          numquam possimus quaerat ipsam, labore eveniet repellat autem facere
-          beatae ad aperiam voluptatum, eligendi repudiandae quidem? Accusamus
-          excepturi delectus praesentium nisi?
+          {summary}
         </div>
       </div>
     </div>
