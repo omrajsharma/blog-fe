@@ -102,6 +102,33 @@ header nav {
     border-radius: 5px;
 }
 
+/* POST EDITOR PAGE */
+.post-editor {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.post-editor input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+.post-editor button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.ql-container.ql-snow {
+    min-height: 400px;
+}
 
 @media (max-width: 768px) {
     header {
