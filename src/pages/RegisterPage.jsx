@@ -1,7 +1,9 @@
 import React from "react";
 import alert from "../utilities/alert";
+import { Navigate } from "react-router-dom";
 
 function RegisterPage() {
+  const [redirect, setRedirect] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -32,6 +34,7 @@ function RegisterPage() {
     .then(res => {
       if (res.ok) {
         alert("success", "User Registered Successfully");
+        setRedirect(true);
       } else {
         alert("error", "User Registration Failed");
       }
@@ -41,6 +44,10 @@ function RegisterPage() {
     setUsername("");
     setPassword("");
   };
+
+  if (redirect) {
+    return <Navigate to={'/login'} />
+  }
 
   return (
     <div className="register">
