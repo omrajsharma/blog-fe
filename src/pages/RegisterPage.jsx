@@ -1,4 +1,5 @@
 import React from "react";
+import alert from "../utilities/alert";
 
 function RegisterPage() {
   const [username, setUsername] = React.useState("");
@@ -7,16 +8,16 @@ function RegisterPage() {
   const handleRegister = () => {
     // Validation
     if (!username || !password) {
-      alert("Username and password are required");
+      alert("error" ,"Username and password are required");
       return;
     } else if (password.length < 8) {
-      alert("Password must be at least 8 characters");
+      alert("error" ,"Password must be at least 8 characters");
       return;
     } else if (username.length < 3) {
-      alert("Username must be at least 3 characters");
+      alert("error" ,"Username must be at least 3 characters");
       return;
     } else if (username.length > 20) {
-      alert("Username must be less than 20 characters");
+      alert("error" ,"Username must be less than 20 characters");
       return;
     }
 
@@ -27,6 +28,13 @@ function RegisterPage() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({username, password}),
+    })
+    .then(res => {
+      if (res.ok) {
+        alert("success", "User Registered Successfully");
+      } else {
+        alert("error", "User Registration Failed");
+      }
     })
 
 
