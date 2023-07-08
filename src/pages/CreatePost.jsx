@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
+import { Navigate } from 'react-router-dom';
 
 const modules = {
 toolbar: [
@@ -20,6 +21,7 @@ const formats = [
 ]
 
 function CreatePost() {
+    const [redirect, setRedirect] = React.useState(false)
     const [title, setTitle] = React.useState('')
     const [summary, setSummary] = React.useState('')
     const [content, setContent] = React.useState('')
@@ -52,8 +54,15 @@ function CreatePost() {
             body: data,
             credentials: 'include'
         })
+
+        if (response.ok) {
+            setRedirect(true);
+        }
     }
 
+    if (redirect) {
+        return <Navigate to={'/'} />
+    }
 
   return (
     <form className='post-editor' onSubmit={createNewPost}>
