@@ -1,4 +1,5 @@
 import React from 'react'
+import alert from '../utilities/alert';
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from 'react-router-dom';
@@ -26,10 +27,10 @@ function CreatePost() {
     const [summary, setSummary] = React.useState('')
     const [content, setContent] = React.useState('')
     const [files, setFiles] = React.useState('')
-
+    
     const createNewPost = async (e) => {
         e.preventDefault();
-
+        
         if (!title || !summary || !content) {
             alert('Please fill all the fields!')
         }
@@ -48,15 +49,16 @@ function CreatePost() {
         data.set('summary', summary);
         data.set('content', content);
         data.set('file', files[0]);
-
+        
         const response = await fetch('http://localhost:3000/api/v1/post', {
             method: "POST",
             body: data,
             credentials: 'include'
         })
-
+        
         if (response.ok) {
             setRedirect(true);
+            alert('success', 'Blog post created successfully')
         }
     }
 
