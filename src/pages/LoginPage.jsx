@@ -1,4 +1,5 @@
 import React from "react";
+import alert from '../utilities/alert'
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -11,16 +12,16 @@ function LoginPage() {
 
   const handleLogin = () => {
     if (!username || !password) {
-      alert("Username and password are required");
+      alert("error" ,"Username and password are required");
       return;
     } else if (password.length < 8) {
-      alert("Password must be at least 8 characters");
+      alert("error" ,"Password must be at least 8 characters");
       return;
     } else if (username.length < 3) {
-      alert("Username must be at least 3 characters");
+      alert("error" ,"Username must be at least 3 characters");
       return;
     } else if (username.length > 20) {
-      alert("Username must be less than 20 characters");
+      alert("error" ,"Username must be less than 20 characters");
       return;
     }
 
@@ -35,10 +36,11 @@ function LoginPage() {
     })
       .then(res => {
         if (res.ok) {
+          alert("success", "Login successfully")
           res.json().then(data => setUserInfo(data))
           setLoggedIn(true);
         } else {
-          alert("Invalid username or password");
+          alert("error" ,"Invalid username or password");
         }
       })
 
