@@ -30,16 +30,26 @@ header nav {
 }
 .post {
     margin-bottom: 40px;
+    padding: 16px 10px;
     display: flex;
+    align-items: center;
     gap: 20px;
+    height: 180px;
+    border-radius: 12px;
+}
+.post:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.2s ease-in;
 }
 .post__image {
     width: 30%;
+    height: 160px;
 }
 .post__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 .post__content {
     width: 70%;
@@ -140,6 +150,7 @@ header nav {
     }
     .post {
         flex-direction: column;
+        height: 360px;
     }
     .post__image {
         width: 100%;
