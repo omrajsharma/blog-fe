@@ -8,7 +8,6 @@ function IndexPage() {
     fetch('http://localhost:3000/api/v1/post')
     .then(res => res.json())
     .then(posts => {
-      console.log(posts)
       setPosts(posts)
     })
   }, [])
