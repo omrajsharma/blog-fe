@@ -1,7 +1,9 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { UserContext } from '../context/UserContext';
 
 function PostDetail() {
+  const {userInfo} = useContext(UserContext)
   const {postId} = useParams();
   const [postInfo, setPostInfo] = React.useState({});
 
@@ -30,6 +32,11 @@ function PostDetail() {
                     <h4>
                         <span>By</span> {postInfo?.author?.username?.toUpperCase()}
                     </h4>
+                    { postInfo?.author?._id === userInfo?._id && (
+                        <Link to={'/edit/' + postInfo._id}>
+                            🖋️ Edit
+                        </Link>
+                    )}
                 </div>
                 <div className="post-detail-img">
                     <img src={"http://localhost:3000/" + postInfo.cover} alt="" />
