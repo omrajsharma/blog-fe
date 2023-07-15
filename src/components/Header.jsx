@@ -6,7 +6,7 @@ function Header() {
   const {userInfo, setUserInfo} = React.useContext(UserContext);
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/v1/auth/profile', {
+    fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/auth/profile', {
       credentials: 'include'
     })
     .then(res => res.json())
@@ -16,7 +16,7 @@ function Header() {
   }, [])
 
   const logout = () => {
-    fetch('http://localhost:3000/api/v1/auth/logout', {
+    fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/auth/logout', {
       credentials: 'include'
     })
     setUserInfo({})

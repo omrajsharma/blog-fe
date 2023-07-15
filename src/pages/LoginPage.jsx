@@ -26,7 +26,7 @@ function LoginPage() {
     }
 
     // API call to login
-    fetch("http://localhost:3000/api/v1/auth/login", {
+    fetch("https://fine-blue-shrimp-coat.cyclic.app/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

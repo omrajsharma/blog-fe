@@ -5,7 +5,7 @@ function IndexPage() {
   const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/v1/post')
+    fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/post')
     .then(res => res.json())
     .then(posts => {
       setPosts(posts)

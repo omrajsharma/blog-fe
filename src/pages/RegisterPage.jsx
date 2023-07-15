@@ -24,7 +24,7 @@ function RegisterPage() {
     }
 
     // API call to register
-    fetch('http://localhost:3000/api/v1/auth/register', {
+    fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

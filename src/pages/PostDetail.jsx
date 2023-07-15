@@ -8,7 +8,7 @@ function PostDetail() {
   const [postInfo, setPostInfo] = React.useState({});
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/v1/post/' + postId)
+    fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/post/' + postId)
     .then(res => {
         if (res.ok) {
             res.json().then(data => setPostInfo(data))
@@ -39,7 +39,7 @@ function PostDetail() {
                     )}
                 </div>
                 <div className="post-detail-img">
-                    <img src={"http://localhost:3000/" + postInfo.cover} alt="" />
+                    <img src={postInfo.thumbnail} alt="" />
                 </div>
                 <div className="post-detail-content">
                     <div dangerouslySetInnerHTML={{__html: postInfo.content}} />

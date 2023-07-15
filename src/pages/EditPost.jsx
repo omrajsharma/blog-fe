@@ -30,7 +30,7 @@ function EditPost() {
     const [files, setFiles] = React.useState('')
     
     useEffect(() => {
-        fetch('http://localhost:3000/api/v1/post/' + postId)
+        fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/post/' + postId)
         .then(res => res.json())
         .then(data => {
             setTitle(data.title)
@@ -50,7 +50,7 @@ function EditPost() {
             data.set('file', files?.[0])
         }
 
-        const response = await fetch('http://localhost:3000/api/v1/post/' + postId, {
+        const response = await fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/post/' + postId, {
             method: 'PUT',
             body: data,
             credentials: 'include'

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Post({id, title, summary, author, updatedAt, cover}) {
+function Post({id, title, summary, author, updatedAt, thumbnail}) {
   return (
     <Link to={'/post/' + id}>
       <div className="post">
         <div className="post__image">
           <img
-            src={"http://localhost:3000/" + cover}
+            src={thumbnail}
             alt=""
           />
         </div>
