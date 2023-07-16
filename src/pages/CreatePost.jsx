@@ -34,44 +34,50 @@ function CreatePost() {
     const createNewPost = async (e) => {
         e.preventDefault();
         
-        // if (!title || !summary || !content) {
-        //     alert('Please fill all the fields!')
-        // }
-        // if (title.length < 3 && title.length >= 100) {
-        //     alert('title should be greater than 3 characters and less than equals to 100 characters')
-        // }
-        // if (summary.length < 30 && summary.length >= 300) {
-        //     alert('summary should be greater than 30 characters and less than equals to 300 characters')
-        // }
-        // if (content.length < 30 && summary.length >= 50000) {
-        //     alert('content should be greater than 30 characters or your content is too large')
-        // }
-
-        console.log(files[0]);
+        if (!title || !summary || !content) {
+            alert('error' ,'Please fill all the fields!')
+            return
+        }
+        if (title.length < 3 || title.length >= 100) {
+            alert('error' ,'title should be greater than 3 characters and less than equals to 100 characters')
+            return
+        }
+        if (summary.length < 30 || summary.length >= 300) {
+            alert('error' ,'summary should be greater than 30 characters and less than equals to 300 characters')
+            return
+        }
+        if (!files[0]) {
+            alert('error' ,'please select a thumbnail picture for blog')
+            return
+        }
+        if (content.length < 30 || summary.length >= 50000) {
+            alert('error' ,'content should be greater than 30 characters or your content is too large')
+            return
+        }
 
         const fileExtension = files[0].name.split('.').pop();
         const randomFileName = `${uuidV4()}.${fileExtension}`;
         const storageRef = ref(storage, `/thumbnail/${randomFileName}`);
         const uploadCover = uploadBytesResumable(storageRef, files[0]);
-
-        console.log(uploadCover);
-        
-        const data = new FormData();
-        data.set('title', title);
-        data.set('summary', summary);
-        data.set('content', content);
-        data.set('thumbnail', `https://firebasestorage.googleapis.com/v0/b/blogs-45a6e.appspot.com/o/thumbnail%2F${randomFileName}?alt=media&token=2bab6f3e-a6fb-4e5f-bf7f-91d2c493a75e`);
         
         const response = await fetch('https://fine-blue-shrimp-coat.cyclic.app/api/v1/post', {
             method: "POST",
-            body: data,
-            credentials: 'include'
+            body: JSON.stringify({
+                title,
+                summary,
+                content,
+                thumbnail: `https://firebasestorage.googleapis.com/v0/b/blogs-45a6e.appspot.com/o/thumbnail%2F${randomFileName}?alt=media&token=2bab6f3e-a6fb-4e5f-bf7f-91d2c493a75e`
+            }),
+            headers: {
+                "Content-type" : "application/json"
+            },
+            credentials: 'include',
         })
         
-        // if (response.ok) {
-        //     setRedirect(true);
-        //     alert('success', 'Blog post created successfully')
-        // }
+        if (response.ok) {
+            setRedirect(true);
+            alert('success', 'Blog post created successfully')
+        }
     }
 
     if (redirect) {
